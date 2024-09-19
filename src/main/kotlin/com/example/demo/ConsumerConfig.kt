@@ -9,10 +9,9 @@ import java.util.function.Consumer
 class ConsumerConfig {
 
     @Bean
-    fun process() = Consumer<Any> { msg ->
+    fun data() = Consumer<Any> { msg ->
         println(msg)
     }
-
 
     @Bean
     fun myObjectMapper() = ObjectMapper()
