@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: demo
+  cloud:
+    function:
+      definition: process
+    azure:
+      message-converter:
+        isolated-object-mapper: false
+      profile:
+        tenant-id: "mytenant"
+      credential:
+        client-id: "myclient"
+        client-secret: "mysecret"
+    stream:
+      bindings:
+        data-in-0:
+          destination: my_data
+          group: my_group
+          binder: my_bus
+      binders:
+        my_bus:
+          type: servicebus
+          environment:
+            spring:
+              cloud:
+                azure:
+                  servicebus:
+                    namespace: my_service_bus
+      servicebus:
+        bindings:
+          data-in-0:
+            consumer:
+              auto-complete: true
